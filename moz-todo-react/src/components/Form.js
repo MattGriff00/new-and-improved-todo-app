@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 
-function Form(props) {
-    const [name, setName] = useState('Use hooks!');
-    const [date, setDate] = useState([]);
+const initialValues = {
+  item: "",
+  dueDate: ""
+};
 
-    function handleChange(e) {
-        setName(e.target.value.name);
-        setDate(e.target.value.date);
-    }
+function Form(props) {
+    const [values, setValues] = useState(initialValues);
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setValues({
+        ...values,
+        [name]: value,
+      });
+    };
 
     function handleSubmit(e) {
-        e.preventDefault();
-        props.addTask(name);
-        setName("");
-    }
+      e.preventDefault();
+      const newValues = Object.entries(values)
+      props.addTask(newValues);
+      setValues("");
+      e.target.reset();
+    } 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -26,10 +35,10 @@ function Form(props) {
         type="text"
         id="new-todo-input"
         className="input input__lg"
-        name="text"
+        name="item"
         autoComplete="off"
-        value={name}
-        onChange={handleChange}
+        value={values.item}
+        onChange={handleInputChange}
       />
       <h2 className="label-wrapper">
         <label htmlFor="new-todo-input" className="label__lg">
@@ -38,12 +47,12 @@ function Form(props) {
       </h2>
       <input
         type="date"
-        id=""
+        id="new-todo-input"
         className="input input__lg"
         name="dueDate"
         autoComplete="off"
-        value={date}
-        onChange={handleChange}
+        value={values.date}
+        onChange={handleInputChange}
       />
       <button type="submit" className="btn btn__primary btn__lg">
         Add

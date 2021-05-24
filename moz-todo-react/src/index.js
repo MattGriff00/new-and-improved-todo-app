@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const DATA = [
-  { id: "todo-0", name: "Eat", completed: true, dueDate: '01/01/20' },
-  { id: "todo-1", name: "Sleep", completed: false, dueDate: '01/01/20' },
-  { id: "todo-2", name: "Repeat", completed: false, dueDate: '01/01/20' }
+  { id: "todo-0", item: "Eat", completed: true, dueDate: '01/01/20' },
+  { id: "todo-1", item: "Sleep", completed: false, dueDate: '01/01/20' },
+  { id: "todo-2", item: "Repeat", completed: false, dueDate: '01/01/20' }
 ];
 
 ReactDOM.render(

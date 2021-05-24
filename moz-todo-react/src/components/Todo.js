@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 export default function Todo(props) {
     const [isEditing, setEditing] = useState(false);
-    const [newName, setNewName] = useState('');
+    const [newItem, setNewItem] = useState('');
 
     function handleChange(e) {
-        setNewName(e.target.value);
+        setNewItem(e.target.value);
     }
     
     function handleSubmit(e) {
         e.preventDefault();
-        props.editTask(props.id, newName);
-        setNewName("");
+        props.editTask(props.id, newItem);
+        setNewItem("");
         setEditing(false);
     }
 
@@ -19,13 +19,13 @@ export default function Todo(props) {
         <form className="stack-small" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="todo-label" htmlFor={props.id}>
-              New name for {props.name}
+              New name for {props.item[0][1]}
             </label>
             <input 
                 id={props.id} 
                 className="todo-text" 
                 type="text" 
-                value={newName}
+                value={newItem}
                 onChange={handleChange}
             />
           </div>
@@ -35,11 +35,11 @@ export default function Todo(props) {
                 className="btn todo-cancel"
                 onClick={() => setEditing(false)}>
               Cancel
-              <span className="visually-hidden">renaming {props.name}</span>
+              <span className="visually-hidden">renaming {props.item}</span>
             </button>
             <button type="submit" className="btn btn__primary todo-edit">
               Save
-              <span className="visually-hidden">new name for {props.name}</span>
+              <span className="visually-hidden">new name for {props.item}</span>
             </button>
           </div>
         </form>
@@ -55,7 +55,7 @@ export default function Todo(props) {
                 onChange={() => props.toggleTaskCompleted(props.id)}
               />
               <label className="todo-label" htmlFor={props.id}>
-                {props.name}
+                The task is: {props.item[0][1]}
               </label>
             </div>
             <div className="btn-group">
@@ -63,17 +63,17 @@ export default function Todo(props) {
               type="button" 
               className="btn"
               onClick={() => setEditing(true)}>
-                Edit <span className="visually-hidden">{props.name}</span>
+                Edit <span className="visually-hidden">{props.item}</span>
               </button>
               <button
                 type="button"
                 className="btn btn__danger"
                 onClick={() => props.deleteTask(props.id)}
               >
-                Delete <span className="visually-hidden">{props.name}</span>
+                Delete <span className="visually-hidden">{props.item}</span>
               </button>
             <div className="btn__dueDate">
-                <span>Due Date: {props.dueDate}</span>
+                <span>Due Date: <br/> {props.item[1][1]}</span>
             </div>
             </div>
         </div>
