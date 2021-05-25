@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { nanoid } from "nanoid";
 
 const initialValues = {
+  id: "todo-" + nanoid(),
   item: "",
-  dueDate: ""
+  completed: false,
+  dueDate: " "
 };
 
 function Form(props) {
@@ -13,15 +16,18 @@ function Form(props) {
       setValues({
         ...values,
         [name]: value,
-      });
+      });     
     };
+
+    console.log(value);
 
     function handleSubmit(e) {
       e.preventDefault();
-      const newValues = Object.entries(values)
-      props.addTask(newValues);
-      setValues("");
+      const newValues = JSON.stringify(values);
+      props.addTask(values);
+      setValues();
       e.target.reset();
+      console.log(values);
     } 
 
   return (

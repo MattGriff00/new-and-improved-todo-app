@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function Todo(props) {
+
     const [isEditing, setEditing] = useState(false);
     const [newItem, setNewItem] = useState('');
 
@@ -19,7 +20,7 @@ export default function Todo(props) {
         <form className="stack-small" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="todo-label" htmlFor={props.id}>
-              New name for {props.item[0][1]}
+              New name for {props.item}
             </label>
             <input 
                 id={props.id} 
@@ -55,7 +56,7 @@ export default function Todo(props) {
                 onChange={() => props.toggleTaskCompleted(props.id)}
               />
               <label className="todo-label" htmlFor={props.id}>
-                The task is: {props.item[0][1]}
+                The task is: {props.item}
               </label>
             </div>
             <div className="btn-group">
@@ -73,7 +74,7 @@ export default function Todo(props) {
                 Delete <span className="visually-hidden">{props.item}</span>
               </button>
             <div className="btn__dueDate">
-                <span>Due Date: <br/> {props.item[1][1]}</span>
+                <span>Due Date: <br/> {props.dueDate}</span>
             </div>
             </div>
         </div>
