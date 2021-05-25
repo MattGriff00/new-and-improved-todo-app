@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 
+<<<<<<< HEAD
 const initialValues = {
   id: "todo-" + nanoid(),
   item: "",
@@ -8,9 +9,13 @@ const initialValues = {
   dueDate: " "
 };
 
+=======
+>>>>>>> parent of 972d2bb (V2)
 function Form(props) {
-    const [values, setValues] = useState(initialValues);
+    const [name, setName] = useState('Use hooks!');
+    const [date, setDate] = useState([]);
 
+<<<<<<< HEAD
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setValues({
@@ -18,10 +23,17 @@ function Form(props) {
         [name]: value,
       });     
     };
+=======
+    function handleChange(e) {
+        setName(e.target.value.name);
+        setDate(e.target.value.date);
+    }
+>>>>>>> parent of 972d2bb (V2)
 
     console.log(value);
 
     function handleSubmit(e) {
+<<<<<<< HEAD
       e.preventDefault();
       const newValues = JSON.stringify(values);
       props.addTask(values);
@@ -29,6 +41,12 @@ function Form(props) {
       e.target.reset();
       console.log(values);
     } 
+=======
+        e.preventDefault();
+        props.addTask(name);
+        setName("");
+    }
+>>>>>>> parent of 972d2bb (V2)
 
   return (
     <form onSubmit={handleSubmit}>
@@ -41,10 +59,10 @@ function Form(props) {
         type="text"
         id="new-todo-input"
         className="input input__lg"
-        name="item"
+        name="text"
         autoComplete="off"
-        value={values.item}
-        onChange={handleInputChange}
+        value={name}
+        onChange={handleChange}
       />
       <h2 className="label-wrapper">
         <label htmlFor="new-todo-input" className="label__lg">
@@ -53,12 +71,12 @@ function Form(props) {
       </h2>
       <input
         type="date"
-        id="new-todo-input"
+        id=""
         className="input input__lg"
         name="dueDate"
         autoComplete="off"
-        value={values.date}
-        onChange={handleInputChange}
+        value={date}
+        onChange={handleChange}
       />
       <button type="submit" className="btn btn__primary btn__lg">
         Add
